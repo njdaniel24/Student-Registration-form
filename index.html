@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>student calculate</title>
+	<meta charset="UTF-8">   
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href= "https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet"/>
+	<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+.container {
+flex: 0 1 700px;
+margin: auto;
+padding: 10px;
+}
+
+.screen-body-item {
+flex: 1;
+padding: 50px;
+}
+input {
+margin: 10px 10px 10px;
+}
+.showdata {
+color: black;
+font-size: 1.2rem;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+.form-group{
+    text-align: center;
+}
+.buttonpos{
+    text-align: center;
+}
+</style>
+</head>
+	<!-- main html -->
+    <body background="pexels-fwstudio-129731.jpg" width="10%" height="10%">
+        <form>
+        <section>
+            <h1 style="text-align: center; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Student Details</h1>
+
+
+        </section>
+        <section style="text-align: center;">
+        <label for="FirstName">FirstName</label>
+        <input type="text" name="firstName" id="firstName">
+        <label for="Middlename">Middlename</label>
+        <input type="text" name="middlename" id="middlename">
+        <label for="Lastname">Lastname</label>
+        <input type="text" name="lastname" id="lastname">
+    </section><br><br>
+    <section style="text-align: center;">
+        <input type="radio" id="male" name="fav_language" value="HTML">
+         <label for="Male">Male</label>
+        <input type="radio" id="female" name="fav_language" value="HTML">
+         <label for="female">female</label><br><br>
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday">
+        <label for="cars">Year Of SCC Passing:</label>
+        <select name="year" id=year>
+        <option value="year">2021</option>
+        <option value="year">2020</option>
+        <option value="year">2019</option>
+        <option value="year">2018</option> 
+        <option value="year">2017</option>
+        <option value="year">2016</option>
+        <option value="year">2015</option>
+        <option value="year">2014</option>
+    </select></section><br><br>
+
+	<div class="container">
+	<h1 style="text-align: center;">Student grade calculator</h1>
+	<div class="screen-body-item">
+		<div class="app">
+		<div class="form-group">
+			<!-- option for taking the input -->
+			<input type="text" class="form-control" placeholder="MARK1" id="MARK1"/>
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="MARK2" id="MARK2"/>
+		</div>
+		<div class="form-group">
+			<input type="text"class="form-control" placeholder="MARK3" id="MARK3"/>
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="MARK4" id="MARK4"/>
+		</div>
+		<div class="buttonpos">
+			<input type="button" value="show Percentage" class="form-button" onclick="calculate()"/>
+		</div>
+		</div>
+	</div>
+	<!-- for showing the result-->
+	<div class="form-group showdata">
+		<p id="showdata"></p>
+	</div>
+	</div>
+	<!--adding external javascript file-->
+	<script>
+        // Function for calculating grades
+const calculate = () => {
+
+// Getting input from user into height variable.
+let MARK1 = document.querySelector("#MARK1").value;
+let MARK2 = document.querySelector("#MARK2").value;
+let MARK3 = document.querySelector("#MARK3").value;
+let MARK4 = document.querySelector("#MARK4").value;
+let grades = "";
+
+// Input is string so typecasting is necessary. */
+let totalgrades =
+	parseFloat(MARK1) +
+	parseFloat(MARK2) +
+	parseFloat(MARK3) +
+	parseFloat(MARK4);
+
+// Checking the condition for the providing the
+// grade to student based on percentage
+let percentage = (totalgrades / 400) * 100;
+if (percentage <= 100 && percentage >= 80) {
+	grades = "A";
+} else if (percentage <= 79 && percentage >= 60) {
+	grades = "B";
+} else if (percentage <= 59 && percentage >= 40) {
+	grades = "C";
+} else {
+	grades = "F";
+}
+// Checking the values are empty if empty than
+// show please fill them
+if (MARK1 == "" || MARK2 == ""
+			|| MARK3 == "" || MARK4 == "") {
+	document.querySelector("#showdata").innerHTML
+		= "Please enter all the fields";
+} else {
+
+	// Checking the condition for the fail and pass
+	if (percentage >= 39.5) {
+	document.querySelector(
+		"#showdata"
+	).innerHTML =
+		` Out of 400 your total is ${totalgrades}
+		and percentage is ${percentage}%. <br>
+		Your grade is ${grades}. You are Pass. `;
+	} else {
+	document.querySelector(
+		"#showdata"
+	).innerHTML =
+		` Out of 400 your total is ${totalgrades}
+		and percentage is ${percentage}%. <br>
+		Your grade is ${grades}. You are Fail. `;
+	}
+}
+};
+</script>
+</body>
+</html>
